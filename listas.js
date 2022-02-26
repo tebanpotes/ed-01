@@ -161,32 +161,51 @@ class ListSimple {
 
     //Operation for delete element in anywhere part the list
     delete(data){
-
+        console.log(`Value data in alone element ${this.start.data1}-${data} \n`);
+        console.log(`Value this.start and this.end ${ JSON.stringify(this.start)} |||| ${ JSON.stringify(this.end)}`)
         let match = false;
+
+        if(data === undefined){
+            return console.log('Please assign at element to delete');
+        }
 
         if(this.listEmpty()){
             console.log('Not is posibly delete element at list empty')
-        }else if(this.start == this.end && this.start == data){
-             //Verify if alone element in list
-
-             this.start = null;
-             this.end = end;
+        }else if(this.start == this.end && this.start.data1 == data){
+            
+            //Verify if alone element in list
+            
+             this.start = null; 
+             this.end = null;
              this.size--;
              match = true;
-        }else if(this.start.data == data){
+        }else if(this.start.data1 == data){
 
             //Verify if data belongs the first node the list
 
             this.deleteStart();
             match = true;
 
-        }else{
+        }else {
             //Operation for delete in anywhere part of the list
 
             let aux = this.start;
 
-            while(aux.next.data != data){
+            while (aux != null){
+                if(aux.data1 == data){
+                    match = true;
+                    break
+                }
                 aux = aux.next;
+            }
+
+            if(match){
+                let aux = this.start;
+            
+            while(aux.next.data1 != data){
+                //console.log(aux.next.data1);
+                aux = aux.next;
+               
             }
 
             //Define node to delete
@@ -201,6 +220,7 @@ class ListSimple {
             //if position node actually is penultimate node
 
             if(aux.next == null){
+                console.log('es el penultimo nodo')
                 this.end = aux;
             }
 
@@ -209,22 +229,16 @@ class ListSimple {
             match = true;
         }
 
+            }
+            
         if(match == false){
             console.error('Error: this element to delete not exists in list')
         }
-
-       
-
-
-        
-    }
-
     
+    }
+  
 
 }
-
-
-
 
 
 module.exports = ListSimple;
