@@ -1,124 +1,81 @@
+//Esteban Potes Rua
+
 const Node = require('./node');
-const ListSimple = require('./listas');
 const Stack = require('./stack');
-const prompt = require('prompt-sync')();
 
 
-/*
-simply linked list
-*/
+const stack1 = new Stack();
+const stack2 = new Stack();
+const stack3 =  new Stack();
 
-//Create  Instance the class ListSimple() 
+//fill stack 1
 
-// const list = new ListSimple();
+stack1.push(42);
+stack1.push(50);
+stack1.push(67);
+stack1.push(12);
+stack1.push(28);
 
-// list.insertStart(3);
-// list.insertStart(2);
-// list.insertStart(1);
-// // //list.insertStart(3.14); 
+//fill stack 2
 
-// // list.insertEnd('Hello');
-
-
-
-// // list.insert(2022, 1 );
-
-// list.show();
-
+stack2.push(33);
+stack2.push(50);
+stack2.push(42);
+stack2.push(68);
+stack2.push(28);
 
 
-// console.log('elements in list: ', list.size ,'\n');
-// console.log('start element',list.start, '\n');
-// console.log('end element',list.end, '\n');
+// print stack 1
 
-// console.log('--------------------DELETE---------------------')
+console.log('Elements stack 1');
+stack1.show();
 
-// list.delete(7);
-
-// list.show();
-
-// console.log('elements in list: ', list.size ,'\n');
-// console.log('start element',list.start, '\n');
-// console.log('end element',list.end, '\n');
+console.log('Elements stack 2')
+stack2.show();
 
 
-// console.log('--------------DELETE START-----------------');
-// list.deleteStart();
-
-// console.log('elements in list: ', list.size ,'\n');
-
-// list.show();
-
-// console.log('end element',list.end, '\n');
-
-// console.log('------------DETELE END-------------------');
-
-// list.deleteEnd();
-// console.log('elements in list: ', list.size ,'\n');
-
-// list.show();
-
-// console.log('end element',list.end, '\n');
+ //symmetrical difference the two stacks
 
 
-/*
-Stacks
-*/
+ function symmetricalDifference(s1, s2){
 
-const undoStack = new Stack();
-const redoStack = new Stack();
+    //validate if exist un node and not is null
+    while(s1.first){
+        //pointer the first node the one stack  => first the next
+        s1.first = s1.first.next;
+        //pointer the first node the second stack => first the next
+        s2.first = s2.first.next;
 
-undoStack.push('typing text');
-undoStack.push('Insert jump');
-undoStack.push('typing title');
-
-/*Menu*/
-
-while(true){
-
-    // console.clear();
-    console.log('\n-Actions stored in Stack: \n');
-    undoStack.show();
-    console.log('\n-Action to be removed when running undo:\n', undoStack.peek());
-    
-    console.log(`\nMenu:\n 1. Entered new action\n 2. Undo (ctrl + z)\n 3. Redo (ctrl + y)\n 4. Show stack  \n 5. Exit `);
-
-   
-    let option = prompt('Type option: ');
-
-    if(option == 1){
-        const actionNew = prompt('Typing action for add in stack: ');
-        undoStack.push(actionNew);
-        
-    }
-    
-    if(option == 2){
-        
-        redoStack.push(undoStack.peek());
-        undoStack.pop();
+        //validate if exists node
+        if(s1.first){
+            //compare values the two stacks id diferente then insert in stack 3
+            if(s1.first.data1 != s2.first.data1 ){
+                stack3.push(s1.first.data1);
+                stack3.push(s2.first.data1);
+            }
+        }
+       
     }
 
-    if(option == 3){
-        
-        undoStack.push(redoStack.peek());
-        
-    }
-
-    if(option == 4){
-        
-        console.log('** Elements in stack: \n');
-        undoStack.show();
-        
-    }
-    
-    
-
-    if (option == 5){
-        break;
-    }
-
-
-    //validar cuando no haya más que hacer va a tirar un error al deshacer
-    
 }
+//call and send stack to calc diference
+symmetricalDifference(stack1, stack2);
+
+//show Symmetrical Difference
+console.log('Elements stack 3')
+stack3.show();
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
 

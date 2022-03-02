@@ -9,22 +9,17 @@ class Stack{
     }
 
 
+    //Vlidate if stack is empty
     listEmpty(){
         return this.top == null;
     }
 
-    Size(){
-        return this.size;
-    }
-
-    peek(){
-        return this.top.data1;
-    }
 
     push(data){
         let newNode = new Node(data);
 
         if(this.listEmpty()){
+            //create node
             this.first = newNode;
             this.top = newNode;
 
@@ -35,31 +30,12 @@ class Stack{
             this.top = newNode;
         }
 
+        //increment size
         this.size++;
 
     }
 
-    pop(){
-        if(this.listEmpty()){
-            console.log('error you cant´n delete an element in an empty list');
-        }else if(this.first == this.top){
-            this.first = null;
-            this.top = null;
-            this.size--;
-        }else{
-            //Delete end element in list
-            let aux = this.first;
-            while(aux.next != this.top){
-                aux = aux.next;
-                
-            }
-
-            aux.next = this.top.next;
-            this.top = aux;
-            this.size--;
-        }
-    }
-
+    //show stacks
     show(){
         let aux = this.first;
 
@@ -69,6 +45,9 @@ class Stack{
            aux = aux.next;
         }
     }
+
+
+   
 
 
 }
